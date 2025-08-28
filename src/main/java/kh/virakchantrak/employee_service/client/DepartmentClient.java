@@ -13,7 +13,7 @@ public class DepartmentClient {
     public DepartmentResponseDTO getDepartmentByCode(String departmentCode) {
         return webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8080/api/departments/code/{departmentCode}", departmentCode)
+                .uri("http://DEPARTMENT-SERVICE/api/departments/code/{departmentCode}", departmentCode)
                 .retrieve()
                 .bodyToMono(DepartmentResponseDTO.class)
                 .block();
