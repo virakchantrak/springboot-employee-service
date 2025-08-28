@@ -29,6 +29,11 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new ApiException(ErrorCode.EMAIL_ALREADY_EXIST);
         }
 
+        DepartmentResponseDTO departmentResponseDTO = departmentClient.getDepartmentByCode(requestDTO.getDepartmentCode());
+        if (departmentResponseDTO == null) {
+            throw new ApiException(ErrorCode.DEPARTMENT_CODE_NOT_FOUND);
+        }
+
         EmployeeEntity employeeEntity = mapper.toEntity(requestDTO);
         EmployeeEntity savedEntity = employeeRepo.save(employeeEntity);
         return mapper.toResponseDTO(savedEntity);

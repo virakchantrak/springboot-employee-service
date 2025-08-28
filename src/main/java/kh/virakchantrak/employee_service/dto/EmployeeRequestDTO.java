@@ -11,4 +11,6 @@ public class EmployeeRequestDTO {
     @NotNull
     private String email;
     private String position;
+    @NotNull
+    private String departmentCode;
 }

@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 
 public enum ErrorCode implements SystemCoreAware {
     EMAIL_ALREADY_EXIST("Email already exist", HttpStatus.CONFLICT),
-    EMPLOYEE_NOT_FOUND("Employee not found", HttpStatus.NOT_FOUND);
+    EMPLOYEE_NOT_FOUND("Employee not found", HttpStatus.NOT_FOUND),
+    DEPARTMENT_CODE_NOT_FOUND("Department code not found", HttpStatus.NOT_FOUND);
 
     private final String message;
     private final HttpStatus status;
