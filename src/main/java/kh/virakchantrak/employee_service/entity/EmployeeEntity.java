@@ -26,6 +26,7 @@ public class EmployeeEntity extends BaseEntity {
     @Email
     private String email;
 
-    @Column(nullable = false)
-    private Long departmentId;
+    private String position;
+
+    private String departmentCode;
 }

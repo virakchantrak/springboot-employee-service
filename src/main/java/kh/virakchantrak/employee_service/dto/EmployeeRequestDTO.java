@@ -10,4 +10,5 @@ public class EmployeeRequestDTO {
     private String name;
     @NotNull
     private String email;
+    private String position;
 }

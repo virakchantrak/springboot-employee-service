@@ -1,8 +1,11 @@
 package kh.virakchantrak.employee_service.service.impl;
 
+import kh.virakchantrak.employee_service.client.DepartmentClient;
+import kh.virakchantrak.employee_service.client.DepartmentResponseDTO;
 import kh.virakchantrak.employee_service.common.ErrorCode;
 import kh.virakchantrak.employee_service.dto.EmployeeRequestDTO;
 import kh.virakchantrak.employee_service.dto.EmployeeResponseDTO;
+import kh.virakchantrak.employee_service.dto.EmployeeWithDepartmentResponseDTO;
 import kh.virakchantrak.employee_service.entity.EmployeeEntity;
 import kh.virakchantrak.employee_service.mapper.EmployeeMapper;
 import kh.virakchantrak.employee_service.repository.EmployeeRepo;
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Service;
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepo employeeRepo;
     private final EmployeeMapper mapper;
+    private final DepartmentClient departmentClient;
 
     @Override
     public EmployeeResponseDTO create(EmployeeRequestDTO requestDTO) {
@@ -35,6 +39,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeEntity employeeEntity = employeeRepo.findById(id)
                 .orElseThrow(() -> new ApiException(ErrorCode.EMPLOYEE_NOT_FOUND));
         return mapper.toResponseDTO(employeeEntity);
+    }
+
+    @Override
+    public EmployeeWithDepartmentResponseDTO getEmployeeWithDepartment(Long id) {
+        EmployeeEntity employeeEntity = employeeRepo.findById(id)
+                .orElseThrow(() -> new ApiException(ErrorCode.EMPLOYEE_NOT_FOUND));
+
+        DepartmentResponseDTO departmentResponseDTO = departmentClient.getDepartmentByCode(employeeEntity.getDepartmentCode());
+
+        return mapper.toResponseDTO(employeeEntity, departmentResponseDTO);
     }
 
     @Override

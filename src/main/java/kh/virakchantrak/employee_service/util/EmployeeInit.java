@@ -20,16 +20,22 @@ public class EmployeeInit {
         EmployeeEntity employeeEntity = new EmployeeEntity();
         employeeEntity.setName("Virak");
         employeeEntity.setEmail("virak@gmail.com");
+        employeeEntity.setPosition("Software Engineer");
+        employeeEntity.setDepartmentCode("IT001");
         employeeRepo.save(employeeEntity);
 
         employeeEntity = new EmployeeEntity();
         employeeEntity.setName("Sokha");
         employeeEntity.setEmail("sokha@gmail.com");
+        employeeEntity.setPosition("Project Manager");
+        employeeEntity.setDepartmentCode("HR001");
         employeeRepo.save(employeeEntity);
 
         employeeEntity = new EmployeeEntity();
         employeeEntity.setName("Sreymom");
         employeeEntity.setEmail("sreymom@gmail.com");
+        employeeEntity.setPosition("Business Analyst");
+        employeeEntity.setDepartmentCode("FIN001");
         employeeRepo.save(employeeEntity);
     }
 }

@@ -10,10 +10,10 @@ public class DepartmentClient {
 
     private final WebClient.Builder webClientBuilder;
 
-    public DepartmentResponseDTO getDepartmentById(Long id) {
+    public DepartmentResponseDTO getDepartmentByCode(String departmentCode) {
         return webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8080/api/departments/{id}", id)
+                .uri("http://localhost:8080/api/departments/code/{departmentCode}", departmentCode)
                 .retrieve()
                 .bodyToMono(DepartmentResponseDTO.class)
                 .block();
